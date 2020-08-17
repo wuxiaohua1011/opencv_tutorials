@@ -2,3 +2,12 @@ data
 goturn.caffemodel
 mobilenet_iter_73000.caffemodel
 .idea
+data.zip
+yolo-coco
+images
+models
+opencv_weights_and_config
+efficientdet-d0
+efficientdet_d7_coco17_tpu-32
+faster_rcnn_inception_v2
+goturn.prototxt

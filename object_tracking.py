@@ -7,8 +7,12 @@ front_rgb_images_path = Path("/home/michael/Desktop/projects/ROAR/opencv_object_
 paths: List[Path] = sorted(Path(front_rgb_images_path).iterdir(), key=os.path.getmtime)
 
 # tracker_used = "goturn"
-tracker_used = "csrt"
-
+# tracker_used = "csrt"
+# tracker_used = "mil"
+# tracker_used = "tld"
+# tracker_used = "medianflow"
+# tracker_used = "mosse"
+tracker_used = "kcf"
 OPENCV_OBJECT_TRACKERS = {
     "csrt": cv2.TrackerCSRT_create,
     "kcf": cv2.TrackerKCF_create,
@@ -17,8 +21,9 @@ OPENCV_OBJECT_TRACKERS = {
     "tld": cv2.TrackerTLD_create,
     "medianflow": cv2.TrackerMedianFlow_create,
     "mosse": cv2.TrackerMOSSE_create,
-    "goturn":cv2.TrackerGOTURN_create
+    "goturn": cv2.TrackerGOTURN_create
 }
+
 # grab the appropriate object tracker using our dictionary of
 # OpenCV object tracker objects
 trackers = cv2.MultiTracker_create()
@@ -34,6 +39,7 @@ for img_path in paths:
 
     (success, boxes) = trackers.update(frame)
     fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer)
+    print(success)
     if success:
         for box in boxes:
             (x, y, w, h) = [int(v) for v in box]
